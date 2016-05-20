@@ -17,12 +17,14 @@ for line in file.readlines():
 	linenum += 1				
 	
 	if (linenum % 2) == 1:		# 若為"奇數行"，該行為"檔案名稱"
+		line = line.strip('\n')	# 讀取該行內容後，去除最後面的換行字元('\n')
 		filename = line			# 將"檔案名稱"存入變數內
+		
 				
 	elif (linenum % 2) == 0:	# 若為"偶數行"，該行為"網址"
 		file_url = line			# 將"網址"存入變數內
 		
-		urllib.urlretrieve( file_url, filename )	# 下載網頁
+		urllib.urlretrieve( file_url, filename + ".html" )	# 下載網頁
 		print ("Try to download：" + filename + "...done！")	# 在命令列中顯示訊息
 
 file.close()
